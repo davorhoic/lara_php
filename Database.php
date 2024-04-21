@@ -4,7 +4,8 @@
 class Database
 {
     public $connection;
-    public function __construct($config, $username='root', $password='')
+    public $statement;
+    public function __construct($config, $username = 'root', $password = '')
     {
         $dsn = ('mysql:' . http_build_query($config, '', ';'));
 
@@ -12,12 +13,32 @@ class Database
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }
-    public function query($query, $params=[])
+    public function query($query, $params = [])
     {
-        $statement = $this->connection->prepare($query);
+        $this->statement = $this->connection->prepare($query);
 
-        $statement->execute($params);
+        $this->statement->execute($params);
 
-        return $statement;
+        return $this;
     }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+        if (!$result) {
+            abort();
+        }
+
+        return $result;
+    }
+
+    public function get() {
+        return $this->statement->fetchAll();
+    }
+
 }
