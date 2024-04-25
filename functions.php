@@ -18,3 +18,4 @@ function authorize($condition, $status=Response::FORBIDDEN){
         abort($status);
     }
 }
+//print_r("functions.php loaded");
