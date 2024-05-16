@@ -13,6 +13,8 @@ spl_autoload_register(function ($class) {
     require base_path("{$class}.php"); // ne treba nam više prefix Core/
 });
 
+require base_path('bootstrap.php');
+
 $router = new Core\Router();
 $routes = require base_path('routes.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
