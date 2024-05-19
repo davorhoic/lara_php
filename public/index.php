@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 const BASE_PATH = __DIR__ . "/../";
 
 require BASE_PATH . "Core/functions.php";  // za ovo ne možemo koristiti base_path funkciju 
