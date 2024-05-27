@@ -1,0 +1,16 @@
+{
+    "name": "hdrock/php_for_beg",
+    "authors": [
+        {
+            "name": "Davor",
+            "email": "davor.hoic@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}

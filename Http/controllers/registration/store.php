@@ -41,15 +41,15 @@ if ($user) {
     //// IF NOT, SAVE IT TO THE DB, AND THEN LOG USER IN, AND REDIRECT
     $db->query('INSERT INTO users(email, password) VALUES (:email, :password) ', [
         'email' => $email,
-        'password' => $password
+        'password' => password_hash( $password, PASSWORD_BCRYPT)
     ]);
 }
 
 // mark that the user has logged in
 
-$_SESSION['user'] = [
-    'email' => $email
-];
+login([
+    'email'=>$email
+]);
 
 header('location: /');
 exit();
